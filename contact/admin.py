@@ -12,11 +12,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = 'first_name', 'last_name', 'phone', 'category',
+    list_display = 'first_name', 'last_name', 'phone', 'category', 'show',
     ordering = '-id',
     list_filter = 'created_date', 'category',
     search_fields = 'first_name', 'last_name',
-    list_editable = 'phone', 'category',
+    list_editable = 'phone', 'category', 'show',
     list_per_page = 20
     list_max_show_all = 100
     list_display_links = 'first_name', 'last_name',
