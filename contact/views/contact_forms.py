@@ -9,7 +9,7 @@ def create(request):
     form_url = reverse('contact:create')
 
     if request.method == 'POST':
-        form = ContactForms(request.POST)
+        form = ContactForms(request.POST, request.FILES)
 
         if form.is_valid():
             contact_form = form.save()
@@ -29,7 +29,7 @@ def update(request, contact_id):
     form = ContactForms(instance=contact)
 
     if request.method == 'POST':
-        form = ContactForms(request.POST, instance=contact)
+        form = ContactForms(request.POST, request.FILES, instance=contact)
 
         if form.is_valid():
             contact_form = form.save()

@@ -4,10 +4,19 @@ from .models import Contact
 
 
 class ContactForms(forms.ModelForm):
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/*'
+            }
+        )
+    )
+
     class Meta:
         model = Contact
         fields = ('first_name', 'last_name', 'phone',
-                  'email', 'description', 'category')
+                  'email', 'description', 'category',
+                  'picture',)
 
     def clean(self):
         cleaned_data = self.cleaned_data
