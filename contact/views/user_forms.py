@@ -3,7 +3,8 @@ from django.urls import reverse
 from contact.forms import RegisterForm, RegisterUpdateForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -46,6 +47,7 @@ def login_view(request):
     return render(request, 'contact/login.html', context)
 
 
+@login_required(login_url='contact:login')
 def user_update(request):
     form = RegisterUpdateForm(instance=request.user)
     form_action = reverse('contact:user_update')
@@ -67,6 +69,7 @@ def user_update(request):
     return render(request, 'contact/user_update.html', context)
 
 
+@login_required(login_url='contact:login')
 def logout_view(request):
     logout(request)
     return redirect('contact:login')
