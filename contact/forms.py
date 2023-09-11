@@ -8,11 +8,13 @@ from django.contrib.auth import password_validation
 
 class ContactForms(forms.ModelForm):
     picture = forms.ImageField(
+        label='Imagem',
         widget=forms.FileInput(
             attrs={
                 'accept': 'image/*'
             }
-        )
+        ),
+        required=False
     )
 
     class Meta:
@@ -39,16 +41,19 @@ class ContactForms(forms.ModelForm):
 
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(
+        label='Primeiro nome',
         required=True,
         min_length=3,
     )
 
     last_name = forms.CharField(
+        label='Sobrenome',
         required=True,
         min_length=3,
     )
 
     email = forms.EmailField(
+        label='email',
         required=True,
     )
 
@@ -69,6 +74,7 @@ class RegisterForm(UserCreationForm):
 
 class RegisterUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
+        label='Primeiro nome',
         min_length=2,
         max_length=30,
         required=True,
@@ -77,13 +83,14 @@ class RegisterUpdateForm(forms.ModelForm):
         }
     )
     last_name = forms.CharField(
+        label='Sobrenome',
         min_length=2,
         max_length=30,
         required=True,
     )
 
     password1 = forms.CharField(
-        label="Password",
+        label="Senha",
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
         help_text=password_validation.password_validators_help_text_html(),
@@ -91,10 +98,9 @@ class RegisterUpdateForm(forms.ModelForm):
     )
 
     password2 = forms.CharField(
-        label="Password 2",
+        label="Repita a senha",
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        help_text='Repita o password',
         required=False,
     )
 
