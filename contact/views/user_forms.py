@@ -48,7 +48,7 @@ def login_view(request):
 
 def user_update(request):
     form = RegisterUpdateForm(instance=request.user)
-    form_action = reverse('contact:update')
+    form_action = reverse('contact:user_update')
 
     context = {
         'form': form,
@@ -62,7 +62,7 @@ def user_update(request):
             messages.success(request, 'Dados atualizado com sucesso')
         else:
             messages.error(request, 'Dados ínvalidos')
-        return redirect('contact:update')
+        return redirect('contact:user_update')
 
     return render(request, 'contact/user_update.html', context)
 
